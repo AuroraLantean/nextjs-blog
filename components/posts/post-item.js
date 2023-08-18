@@ -11,10 +11,10 @@ function PostItem(props) {
     month: 'long',
     year: 'numeric',
   });
-  console.log('image:', image);
+
   const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${slug}`;
-  console.log('imagePath:', imagePath);
+  //console.log('imagePath:', imagePath);
 
   return (
     <li className={classes.post}>
