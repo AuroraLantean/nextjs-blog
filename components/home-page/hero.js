@@ -13,8 +13,8 @@ function Hero() {
           height={300}
         />
       </div>
-      <h1>Hi, I'm a Web3 Rust/Solidity and NextJs dev!</h1>
-      <p>I blog about web development...</p>
+      <h1>Hi, I'm a Web3 Solidity/Rust and NextJs developer!</h1>
+      <p>I blog about Web3/Blockchain/Crypto development...</p>
     </section>
   );
 }
