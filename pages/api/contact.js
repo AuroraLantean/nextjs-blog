@@ -30,6 +30,8 @@ async function handler(req, res) {
       return console.log('MONGODB_USERNAME not found');
     if (!process.env.MONGODB_PASSWORD)
       return console.log('MONGODB_PASSWORD not found');
+    if (!process.env.MONGODB_CLUSTER)
+      return console.log('MONGODB_CLUSTER not found');
     if (!process.env.MONGODB_URLX) return console.log('MONGODB_URLX not found');
     if (isConnected) return console.log('Already connected to MongoDB');
 
@@ -37,7 +39,7 @@ async function handler(req, res) {
       const dbusername = encodeURIComponent(process.env.MONGODB_USERNAME);
       const dbpassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
-      const connStr = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_URLX}`;
+      const connStr = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_CLUSTER}.${process.env.MONGODB_URLX}`;
       //console.log('connStr:', connStr);
 
       client = await MongoClient.connect(connStr);

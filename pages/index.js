@@ -12,7 +12,7 @@ function HomePage(props) {
         <title>Blog Site</title>
         <meta
           name="description"
-          content="I post about programming and web development."
+          content="I post about Web3 programming, blockchain, and cryptocurrency"
         />
       </Head>
       <Hero />
