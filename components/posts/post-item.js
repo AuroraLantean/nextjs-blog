@@ -14,6 +14,7 @@ function PostItem(props) {
 
   const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${slug}`;
+  //console.log('${slug}/${image}:', `${slug}/${image}`);
   //console.log('imagePath:', imagePath);
 
   return (

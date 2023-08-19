@@ -1,28 +1,22 @@
 import ReactMarkdown from 'react-markdown';
-// import Image from 'next/image';
-// import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-// import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import Image from 'next/image';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import PostHeader from './post-header';
 import classes from './post-content.module.css';
 
-const POST1 = {
-  slug: 'getting-started-with-nextjs',
-  title: 'getting-started-with-nextjs',
-  image: 'getting-started-with-nextjs960.png',
-  content: '# This is a first post',
-  date: '2023-08-18',
-};
-
 function PostContent(props) {
   const { post } = props;
-
-  /*
+  console.log('PostContent ... post.slug:', `${post.slug}`);
+  //https://github.com/remarkjs/react-markdown#appendix-b-components
+  // ReactJs will render the found HTML type with the methods below:
   const customRenderers = {
     img(image) {
+      console.log('image.alt:', image.alt);
       return (
         <Image
-          src={`/images/posts/${post.slug}/${image.src}`}
+          src={`/images/posts/${image.src}`}
           alt={image.alt}
           width={600}
           height={300}
@@ -63,17 +57,16 @@ function PostContent(props) {
     },
   };
 
-      <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
-  */
-  const imagePath = `/images/posts/${POST1.slug}/${POST1.image}`;
-  //const imagePath = `/images/posts/${post.slug}/${post.image}`;
+  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+  //const imagePath = `/images/posts/${POST1.slug}/${POST1.image}`;
 
   return (
     <article className={classes.content}>
-      <PostHeader title={POST1.title} image={imagePath} />
-      <ReactMarkdown>{POST1.content}</ReactMarkdown>
+      <PostHeader title={post.title} image={imagePath} />
+      <ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
     </article>
   );
 }
+//      <ReactMarkdown>{post.content}</ReactMarkdown>
 
 export default PostContent;
