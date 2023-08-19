@@ -38,7 +38,7 @@ async function handler(req, res) {
       const dbpassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
       const connStr = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_URLX}`;
-      console.log('connStr:', connStr);
+      //console.log('connStr:', connStr);
 
       client = await MongoClient.connect(connStr);
     } catch (error) {

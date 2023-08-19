@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import classes from './contact-form.module.css';
-//import Notification from '../ui/notification';
+import Notification from '../ui/notification';
 
 //---------------== sendContactData
 async function sendContactData(contactDetails) {
@@ -13,8 +13,8 @@ async function sendContactData(contactDetails) {
       'Content-Type': 'application/json',
     },
   });
-  console.log('sendContactData()...data:', data, response.ok);
   const data = await response.json();
+  console.log('sendContactData()...data:', data, response.ok);
 
   if (!response.ok) {
     throw new Error(data.message || 'Something went wrong!');
@@ -27,6 +27,7 @@ function ContactForm() {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredName, setEnteredName] = useState('');
   const [enteredMessage, setEnteredMessage] = useState('');
+
   const [requestStatus, setRequestStatus] = useState(); // 'pending', 'success', 'error'
   const [requestError, setRequestError] = useState();
 
@@ -47,6 +48,7 @@ function ContactForm() {
     // optional: add client-side validation
 
     setRequestStatus('pending');
+
     console.log('sendMessageHandler(2)');
     try {
       await sendContactData({
@@ -54,6 +56,8 @@ function ContactForm() {
         name: enteredName,
         message: enteredMessage,
       }); //Those argument fields should match the API req.body
+      console.log('sendContactData()...end');
+
       setRequestStatus('success');
       setEnteredMessage('');
       setEnteredEmail('');
@@ -86,6 +90,8 @@ function ContactForm() {
       title: 'Error!',
       message: requestError,
     };
+  } else {
+    console.log('requestStatus invalid');
   }
   console.log('ContactForm(3)');
 
@@ -130,6 +136,13 @@ function ContactForm() {
           <button>Send Message</button>
         </div>
       </form>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
     </section>
   );
 }
