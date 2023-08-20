@@ -29,13 +29,13 @@ function UserProfile() {
 
     const data = await response.json();
 
-    console.log(data);
+    console.log('changePasswordHandler => data:', data);
   }
 
   return (
     <section className={classes.profile}>
       <h1>Your User Profile</h1>
-      <ProfileForm onChangePassword={changePasswordHandler} />
+      <ProfileForm changePassword={changePasswordHandler} />
     </section>
   );
 }

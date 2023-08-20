@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import { isInputsInvalid } from '@/lib/utils';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
@@ -6,8 +7,7 @@ async function handler(req, res) {
     console.log('req.body: ' + JSON.stringify(req.body));
 
     if (
-      !email ||
-      !email.includes('@') ||
+      isInputsInvalid(email, '1234567') ||
       !name ||
       name.trim() === '' ||
       !message ||

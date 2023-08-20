@@ -1,5 +1,6 @@
 import { hashPassword } from '../../../lib/utils';
-import { connectToDatabase } from '../../../lib/db';
+import { connectToDatabase, getCollectionName } from '@/lib/db';
+import { isInputsInvalid } from '@/lib/utils';
 
 //Do not clash with NextAuth.js's signin REST API that is used by the NextAuth.js client.
 async function handler(req, res) {
@@ -13,12 +14,7 @@ async function handler(req, res) {
   const { email, password } = reqBody;
   console.log('handler... email:', email, ', password:', password);
 
-  if (
-    !email ||
-    !email.includes('@') ||
-    !password ||
-    password.trim().length < 7
-  ) {
+  if (isInputsInvalid(email, password)) {
     res.status(422).json({
       message: 'Invalid input',
     });
@@ -29,7 +25,8 @@ async function handler(req, res) {
   const client = await connectToDatabase();
   try {
     console.log('handler...4');
-    const usersCollection = client.db().collection('max_users');
+    const collectionName = getCollectionName();
+    const usersCollection = client.db().collection(collectionName);
 
     const existingUser = await usersCollection.findOne({ email: email });
     console.log('handler...5');

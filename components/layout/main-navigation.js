@@ -41,7 +41,7 @@ function MainNavigation() {
           )}
           {status === 'authenticated' && (
             <li>
-              <button onClick={logoutHandler}>Logout</button>
+              <a onClick={logoutHandler}>Logout</a>
             </li>
           )}
         </ul>
@@ -49,5 +49,6 @@ function MainNavigation() {
     </header>
   );
 }
+//              <button onClick={logoutHandler}>Logout</button>
 
 export default MainNavigation;
