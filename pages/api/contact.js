@@ -49,19 +49,19 @@ async function handler(req, res) {
       return;
     }
     console.log('successful@MongoClient.connect()');
-    const db = client.db();
 
     try {
+      const db = client.db();
       const result = await db.collection('messages').insertOne(newMessage); //this collection will be generated if it does not exist
       newMessage.id = result.insertedId;
     } catch (error) {
-      console.log('error@db.collection(): ', error);
+      console.log('error@db.collection(messages): ', error);
       res.status(500).json({ message: 'Storing message failed!' });
       return;
     } finally {
       client.close();
     }
-    console.log('successful@db.collection()');
+    console.log('successful@db.collection(messages)');
 
     res
       .status(201)

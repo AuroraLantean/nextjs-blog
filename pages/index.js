@@ -23,7 +23,7 @@ function HomePage(props) {
 
 export function getStaticProps() {
   const featuredPosts = getFeaturedPosts();
-  console.log('Mainpage: getStaticProps(): featuredPosts:', featuredPosts);
+  //console.log('Mainpage: getStaticProps(): featuredPosts:', featuredPosts);
 
   return {
     props: {

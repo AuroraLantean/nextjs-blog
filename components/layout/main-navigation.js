@@ -17,6 +17,15 @@ function MainNavigation() {
           <li>
             <Link href="/contact">Contact Us</Link>
           </li>
+          <li>
+            <Link href="/authpage">AuthPage</Link>
+          </li>
+          <li>
+            <Link href="/restricted">Restricted</Link>
+          </li>
+          <li>
+            <Link href="/profile">Profile</Link>
+          </li>
         </ul>
       </nav>
     </header>
