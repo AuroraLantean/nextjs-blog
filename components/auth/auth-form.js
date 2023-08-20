@@ -48,16 +48,19 @@ function AuthForm() {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
-      });
+      }); //email and pw are requied from /api/auth/[...nextauth].js
+      console.log('result:', result);
 
       if (!result.error) {
-        // set some auth state
-        router.replace('/profile');
+        //nextAuth have added a cookie
+        // set some auth state in your state management
+        router.replace('/');
       }
     } else {
       try {
         const result = await registerUser(enteredEmail, enteredPassword);
         console.log(result);
+        router.replace('/');
       } catch (error) {
         console.log(error);
       }
